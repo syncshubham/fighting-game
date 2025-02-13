@@ -12,7 +12,7 @@ class Sprite
     {
         this.position = position;
         this.velocity = velocity;
-    }
+    }   
 
     draw(){
         c.fillStyle = 'red'
@@ -20,7 +20,11 @@ class Sprite
     }
 
     update(){
-        
+        this.draw()
+        this.position.y += 10;
+    }
+
+    movesprite(){
     }
 
 }
@@ -35,7 +39,6 @@ const player = new Sprite({
         y:0
     }
 })
-player.draw()
 
 const enemy = new Sprite({
     position: {
@@ -47,15 +50,16 @@ const enemy = new Sprite({
         y:0
     }
 })
-enemy.draw()
 
 
-console.log(player);
 
 function animate()
 {
     window.requestAnimationFrame(animate);
-    // console.log("go");
+    c.fillStyle = "black";
+    c.fillRect(0,0, canvas.width, canvas.height);
+    player.update();
+    enemy.update();
 }
 
 animate();
