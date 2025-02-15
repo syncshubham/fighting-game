@@ -6,7 +6,7 @@ canvas.height = 576;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const gravity = 1.2;
+const gravity = 0.5;
 
 class Sprite
 {
@@ -23,17 +23,17 @@ class Sprite
     }
 
     update(){
+        console.log("update calling");
         this.draw()
+
+        this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
         if(this.position.y + this.height + this.velocity.y >= canvas.height )
         {
-            this.velocity.y  =0;
+            this.velocity.y = 0;
         }else{
             this.velocity.y += gravity;
         }
-
-        console.log("vel", this.velocity.y);
-        console.log("pos", this.position.y);
     }
 }
 
@@ -61,8 +61,6 @@ const enemy = new Sprite({
     }
 })
 
-
-
 function animate()
 {
     window.requestAnimationFrame(animate);
@@ -73,3 +71,28 @@ function animate()
 }
 
 animate();
+
+window.addEventListener("keydown", (event)=>{
+    switch(event.key){
+        case 'd':
+            player.velocity.x = 1
+            break
+        case 'a':
+            player.velocity.x = -1
+            break
+    }
+console.log(event.key);
+})
+
+
+window.addEventListener("keyup", (event)=>{
+    switch(event.key){
+        case 'd':
+            player.velocity.x = 0
+            break
+        case 'a':
+        player.velocity.x = 0
+        break
+    }
+console.log(event.key);
+})
