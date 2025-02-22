@@ -15,7 +15,7 @@ class Sprite
         this.position = position;
         this.velocity = velocity;
         this.height = 150;
-    }   
+    }
 
     draw(){
         c.fillStyle = 'red'
@@ -36,8 +36,6 @@ class Sprite
         }
     }
 }
-
-const villian = new Sprite({})
 
 const player = new Sprite({
     position: {
@@ -67,6 +65,9 @@ const keys = {
     },
     d:{
         pressed : false
+    },
+    w:{
+        pressed : false
     }
 }
 
@@ -83,9 +84,9 @@ function animate()
     player.velocity.x = 0;   
 
     if(keys.a.pressed && lastkey === 'a'){
-        player.velocity.x = -1;   
+        player.velocity.x = -3;
     }else if(keys.d.pressed && lastkey === 'd'){
-        player.velocity.x = 1;
+        player.velocity.x = 3;
     }
 }
 
@@ -101,6 +102,11 @@ window.addEventListener("keydown", (event)=>{
             keys.a.pressed = true
             lastkey = 'a';
             break
+        case 'w':
+            keys.w.pressed = true
+            lastkey = 'w';
+            player.velocity.y = -10;
+            break
     }
 console.log(event.key);
 })
@@ -113,7 +119,10 @@ window.addEventListener("keyup", (event)=>{
             break
         case 'a':
             keys.a.pressed = false
-        break
+            break
+        case 'w':
+            keys.w.pressed = false
+            break
     }
 console.log(event.key);
 })
