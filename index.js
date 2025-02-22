@@ -15,6 +15,7 @@ class Sprite
         this.position = position;
         this.velocity = velocity;
         this.height = 150;
+        this.lastkey;
     }
 
     draw(){
@@ -103,9 +104,20 @@ window.addEventListener("keydown", (event)=>{
             lastkey = 'a';
             break
         case 'w':
-            keys.w.pressed = true
             lastkey = 'w';
             player.velocity.y = -10;
+            break
+
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = true
+            enemy.lastkey = 'ArrowRight';
+            break
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = true
+            enemy.lastkey = 'ArrowLeft';
+            break
+        case 'ArrowUp':
+            enemy.velocity.y = -10;
             break
     }
 console.log(event.key);
@@ -113,6 +125,7 @@ console.log(event.key);
 
 
 window.addEventListener("keyup", (event)=>{
+    // player keys
     switch(event.key){
         case 'd':
             keys.d.pressed = false
@@ -120,9 +133,17 @@ window.addEventListener("keyup", (event)=>{
         case 'a':
             keys.a.pressed = false
             break
-        case 'w':
-            keys.w.pressed = false
+    }
+
+    // Enemy keys
+    switch(event.key){
+        case 'ArrowRight':
+            keys.ArrowRight.pressed = false
+            break
+        case 'ArrowLeft':
+            keys.ArrowLeft.pressed = false
             break
     }
+
 console.log(event.key);
 })
