@@ -75,8 +75,6 @@ const keys = {
     }
 }
 
-let lastkey;
-
 function animate()
 {
     window.requestAnimationFrame(animate);
@@ -89,9 +87,9 @@ function animate()
     enemy.velocity.x = 0;   
 
     // Player movement
-    if(keys.a.pressed && lastkey === 'a'){
+    if(keys.a.pressed && player.lastkey === 'a'){
         player.velocity.x = -3;
-    }else if(keys.d.pressed && lastkey === 'd'){
+    }else if(keys.d.pressed && player.lastkey === 'd'){
         player.velocity.x = 3;
     }
 
@@ -109,11 +107,11 @@ window.addEventListener("keydown", (event)=>{
     switch(event.key){
         case 'd':
             keys.d.pressed = true
-            lastkey = 'd';
+            player.lastkey = 'd';
             break
         case 'a':
             keys.a.pressed = true
-            lastkey = 'a';
+            player.lastkey = 'a';
             break
         case 'w':
             player.velocity.y = -10;
