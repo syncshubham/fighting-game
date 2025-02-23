@@ -17,17 +17,27 @@ const gravity = 0.8;
 
 class Sprite
 {
-    constructor({position, velocity})
+    constructor({position, velocity, color = 'red'})
     {
         this.position = position;
         this.velocity = velocity;
         this.height = 150;
         this.lastkey;
+        this.attackBox = {
+            position: this.position,
+            width:100,
+            height:50
+        };
+        this.color = color;
     }
 
     draw(){
-        c.fillStyle = 'red'
+        c.fillStyle = this.color;
         c.fillRect(this.position.x, this.position.y, 50, this.height)
+
+        // Attack box
+        c.fillStyle = '#6821acd4'
+        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
     }
 
     update(){
@@ -64,7 +74,8 @@ const enemy = new Sprite({
     velocity:{
         x:0,
         y:0
-    }
+    },
+    color : "#aca221f0"
 })
 
 const keys = {
