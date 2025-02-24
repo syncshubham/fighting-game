@@ -30,6 +30,7 @@ class Sprite
             height:50
         };
         this.color = color;
+        this.isAttacking;
     }
 
     draw(){
@@ -42,7 +43,6 @@ class Sprite
     }
 
     update(){
-        // console.log("update calling");
         this.draw()
 
         this.position.x += this.velocity.x;
@@ -54,6 +54,14 @@ class Sprite
             this.velocity.y += gravity;
         }
     }
+
+    attack(){
+        this.isAttacking = true;
+        setTimeout(() => {
+            this.isAttacking = false;
+        }, 100);
+    }
+
 }
 
 const player = new Sprite({
@@ -120,12 +128,14 @@ function animate()
     }
 
     // collison detection
-    if(player.attackBox.position.x + player.attackBox.width >= enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height)
+    if(player.attackBox.position.x + player.attackBox.width >= enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking)
     {
         console.log("go")
         console.log(player.attackBox.position.x + player.attackBox.width)
         console.log(enemy.position.x)
     }
+
+    player.isAttacking = false;
 
 }
 
@@ -145,7 +155,10 @@ window.addEventListener("keydown", (event)=>{
         case 'w':
             player.velocity.y = -20;
             break
-    
+
+        case ' ':
+            player.attack();
+            break
             // Enemy keys
         case 'ArrowRight':
             keys.ArrowRight.pressed = true
@@ -159,7 +172,7 @@ window.addEventListener("keydown", (event)=>{
             enemy.velocity.y = -20;
             break
     }
-console.log(event.key);
+
 })
 
 
@@ -183,6 +196,4 @@ window.addEventListener("keyup", (event)=>{
             keys.ArrowLeft.pressed = false
             break
     }
-
-console.log(event.key);
 })
