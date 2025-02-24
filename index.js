@@ -25,7 +25,10 @@ class Sprite
         this.width = 50;
         this.lastkey;
         this.attackBox = {
-            position: this.position,
+            position: {
+                x:this.position.x,
+                y:this.position.y
+            },
             width:100,
             height:50
         };
@@ -38,12 +41,22 @@ class Sprite
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
         // Attack box
-        c.fillStyle = '#6821acd4'
-        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+
+        if(this.isAttacking)
+        {
+            c.fillStyle = '#6821acd4'
+            c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        }
+
+        console.log('attackbox ',this.attackBox.position)
+        console.log('box ',this.position)
     }
 
     update(){
         this.draw()
+
+        this.attackBox.position.x = this.position.x;
+        this.attackBox.position.y = this.position.y;
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
