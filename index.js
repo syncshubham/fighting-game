@@ -122,6 +122,10 @@ const keys = {
     }
 }
 
+function rectangularCollison(){
+    return player.attackBox.position.x + player.attackBox.width >= enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking;
+}
+
 function animate()
 {
     window.requestAnimationFrame(animate);
@@ -146,6 +150,8 @@ function animate()
     }else if(keys.ArrowLeft.pressed && enemy.lastkey === 'ArrowLeft'){
         enemy.velocity.x = -7;
     }
+ 
+    
 
     // collison detection
     if(player.attackBox.position.x + player.attackBox.width >= enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking)
