@@ -47,8 +47,6 @@ class Sprite
         c.fillStyle = '#6821acd4'
         c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
 
-        console.log('attackbox ',this.attackBox.position)
-        console.log('box ',this.position)
     }
 
     update(){
@@ -122,8 +120,10 @@ const keys = {
     }
 }
 
-function rectangularCollison(){
-    return player.attackBox.position.x + player.attackBox.width >= enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking;
+function rectangularCollison({rectangle1, rectangle2}){
+    return (
+        rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x && rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.position.y && rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+        )
 }
 
 function animate()
@@ -151,17 +151,19 @@ function animate()
         enemy.velocity.x = -7;
     }
  
-    
 
-    // collison detection
-    if(player.attackBox.position.x + player.attackBox.width >= enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking)
+    // attack area detection
+    if(rectangularCollison({rectangle1: player, rectangle2: enemy}) && player.isAttacking)
     {
-        console.log("go")
-        console.log(player.attackBox.position.x + player.attackBox.width)
-        console.log(enemy.position.x)
+        player.isAttacking = false;
+        console.log("player attack area")
     }
 
-    player.isAttacking = false;
+    if(rectangularCollison({rectangle1: enemy, rectangle2: player}) && enemy.isAttacking)
+    {
+        enemy.isAttacking = false;
+        console.log("enemy attack area")
+    }
 
 }
 
@@ -196,6 +198,9 @@ window.addEventListener("keydown", (event)=>{
             break
         case 'ArrowUp':
             enemy.velocity.y = -20;
+            break
+        case 'ArrowDown':
+            enemy.attack();
             break
     }
 
