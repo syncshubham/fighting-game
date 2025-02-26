@@ -38,15 +38,16 @@ class Sprite
     }
 
     draw(){
+        // player and enemy creting structure
         c.fillStyle = this.color;
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
-        // Attack box
 
-        
-        c.fillStyle = '#6821acd4'
-        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-
+        // player and enemy attack area creation
+        if(this.isAttacking){
+            c.fillStyle = '#6821acd4'
+            c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        }
     }
 
     update(){
