@@ -170,6 +170,7 @@ function animate()
 
 animate();
 
+
 window.addEventListener("keydown", (event)=>{
     // player keys
     switch(event.key){

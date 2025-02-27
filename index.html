@@ -14,7 +14,14 @@
 </style>
 
 <body>
-    <canvas></canvas>
+    <div style="position:relative;">
+        <div style="position:absolute;display: flex;width: 100%;">
+            <div style="background-color:yellow;height:30px;width:100%;"></div>
+            <div style="background-color:red;height:50px;width:100px;flex-shrink: 0;"></div>
+            <div style="background-color:yellow;height:30px;width:100%;"></div>
+        </div>
+        <canvas></canvas>
+    </div>
 </body>
 <script src="index.js"></script>
 
