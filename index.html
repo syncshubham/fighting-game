@@ -8,17 +8,25 @@
     <title>Document</title>
 </head>
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         margin: 0px !important;
     }
 </style>
 
 <body>
-    <div style="position:relative;">
-        <div style="position:absolute;display: flex;width: 100%;">
+    <div style="position:relative;display: inline-block;">
+        <div style="position:absolute;display: flex;width: 100%;align-items: center;padding: 20px;">
             <div style="background-color:yellow;height:30px;width:100%;"></div>
             <div style="background-color:red;height:50px;width:100px;flex-shrink: 0;"></div>
-            <div style="background-color:yellow;height:30px;width:100%;"></div>
+            <div style="position:relative;height:30px;width:100%;">
+                <div style="background-color:yellow;height:30px;"></div>
+                <div id="enemyHealth"
+                    style="position:absolute;background-color:violet;top:0;right: 0;left: 0;bottom: 0;"></div>
+            </div>
         </div>
         <canvas></canvas>
     </div>
