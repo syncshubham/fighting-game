@@ -158,14 +158,15 @@ function animate()
     if(rectangularCollison({rectangle1: player, rectangle2: enemy}) && player.isAttacking)
     {
         player.isAttacking = false;
-        enemy.health -= 20;
+        enemy.health -= 10;
         document.querySelector('#enemyHealth').style.width = enemy.health + "%";
     }
 
     if(rectangularCollison({rectangle1: enemy, rectangle2: player}) && enemy.isAttacking)
     {
         enemy.isAttacking = false;
-        console.log("enemy attack area")
+        player.health -= 10;
+        document.querySelector('#playerHealth').style.width = player.health + "%";
     }
 
 }
