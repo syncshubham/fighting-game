@@ -128,6 +128,22 @@ function rectangularCollison({rectangle1, rectangle2}){
         )
 }
 
+let timer = 10;
+function decreaseTimer(){
+    if(timer > 0){
+    setTimeout(decreaseTimer, 1000) 
+        timer--; 
+        document.getElementById("timer").innerHTML = timer
+        }
+    
+    if(player.health === enemy.health)
+    {
+        console.log('Game tied')
+    }
+}
+
+decreaseTimer();
+
 function animate()
 {
     window.requestAnimationFrame(animate);
