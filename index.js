@@ -136,10 +136,17 @@ function decreaseTimer(){
         document.getElementById("timer").innerHTML = timer
         }
     
+    if(timer === 0){
+        document.querySelector('#displayText').style.display = 'flex';
     if(player.health === enemy.health)
     {
-        console.log('Game tied')
+        console.log('Game tied');
+        document.querySelector('#displayText').innerHTML = 'TIE';
+    }else if(player.health > enemy.health){
+        document.querySelector('#displayText').innerHTML = 'Player 1 wins';
+
     }
+}
 }
 
 decreaseTimer();
