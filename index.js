@@ -17,6 +17,23 @@ const gravity = 0.8;
 
 class Sprite
 {
+    constructor({position})
+    {
+        this.position = position;
+        this.height = 150;
+        this.width = 50;
+    }
+
+    draw(){
+    }
+
+    update(){
+        this.draw()
+    }
+}
+
+class Fighter
+{
     constructor({position, velocity, color = 'red', offset})
     {
         this.position = position;
@@ -75,6 +92,7 @@ class Sprite
     }
 
 }
+
 
 const player = new Sprite({
     position: {
