@@ -1,9 +1,9 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
- // Set display size (vw/vh).
- const sizeWidth = 100 * window.innerWidth / 100,
- sizeHeight = 99 * window.innerHeight / 100;
+// Set display size (vw/vh).
+const sizeWidth = 100 * window.innerWidth / 100,
+sizeHeight = 99 * window.innerHeight / 100;
 
 c.canvas.width = sizeWidth;
 c.canvas.height = sizeHeight;
@@ -14,8 +14,15 @@ c.canvas.style.height = sizeHeight;
 c.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.8;
+const background = new Sprite({
+    position:{
+        x:0,
+        y:0
+    },
+    imageSrc: '../img/background.png'
+})
 
-const player = new Sprite({
+const player = new Fighter({
     position: {
         x:0,
         y:0
@@ -30,7 +37,7 @@ const player = new Sprite({
     }
 })
 
-const enemy = new Sprite({
+const enemy = new Fighter({
     position: {
         x:400,
         y:100
@@ -78,7 +85,6 @@ function determineWinner({player, enemy, timerId}){
         document.querySelector('#displayText').innerHTML = 'Player 1 wins';
     }else if(player.health < enemy.health){
         document.querySelector('#displayText').innerHTML = 'Player 2 wins';
-
     }
 }
  
@@ -103,6 +109,7 @@ function animate()
     window.requestAnimationFrame(animate);
     c.fillStyle = "black"; 
     c.fillRect(0,0, canvas.width, canvas.height);
+    background.update();
     player.update();
     enemy.update();
 
@@ -122,7 +129,6 @@ function animate()
     }else if(keys.ArrowLeft.pressed && enemy.lastkey === 'ArrowLeft'){
         enemy.velocity.x = -7;
     }
- 
 
     // attack area detection
     if(rectangularCollison({rectangle1: player, rectangle2: enemy}) && player.isAttacking)
@@ -182,7 +188,6 @@ window.addEventListener("keydown", (event)=>{
             enemy.attack();
             break
     }
-
 })
 
 
