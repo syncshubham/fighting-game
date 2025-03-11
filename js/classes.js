@@ -30,7 +30,7 @@ class Fighter
         this.width = 50;
         this.lastkey;
         this.attackBox = {
-            position: {
+            position: { 
                 x:this.position.x,
                 y:this.position.y
             },
@@ -64,9 +64,9 @@ class Fighter
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
-        if(this.position.y + this.height + this.velocity.y >= canvas.height )
+        if(this.position.y + this.height + this.velocity.y >= canvas.height - 96)
         {
-            this.velocity.y = 0;
+            this.velocity.y = 0
         }else{
             this.velocity.y += gravity;
         }
