@@ -1,3 +1,5 @@
+const sizeWidth = 100 * window.innerWidth / 100,
+sizeHeight = 99 * window.innerHeight / 100;
 class Sprite
 {
     constructor({position, imageSrc})
@@ -10,7 +12,7 @@ class Sprite
     }
  
     draw(){
-        c.drawImage(this.image, this.position.x, this.position.y )
+        c.drawImage(this.image, this.position.x, this.position.y, sizeWidth, sizeHeight )
     }
 
     update(){
